@@ -6,27 +6,32 @@
 
 using namespace std;
 
-string balanceCheck(string);
-bool counter(string);
+string balanceCheck(string);// func prototype
+
+// bool counter(string);
+
 int main()
 {
     int n;
     cin >> n;
     string strs[n];
 
-    for (int i=0; i<n; i++)
+    for (int i=0; i<n; i++)// Getting input strings from user
     {
         cin >> strs[i];
     }
 
     for (int i=0; i<n; i++)
     {
-        strs[i] = balanceCheck(strs[i]);
-        cout << strs[i] << endl;
+        strs[i] = balanceCheck(strs[i]);// Calling balanceCheck func
+        cout << strs[i] << endl;// Outputting the balanced string
     }
 }
 
-string balanceCheck(string a){
+string balanceCheck(string a)
+// We deducted that if the first and the last char are the same it works
+// So this func does that
+{
     int s = a.size() - 1;
     if (a[0] == a[s]){
         return a;
@@ -37,6 +42,7 @@ string balanceCheck(string a){
     }
 }
 
+// We wrote this func to check if the code was working properly
 
 // bool counter(string a){
 //     int ab{0}, ba{0};
