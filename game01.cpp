@@ -40,6 +40,8 @@ int main(){
     // (both are still alive)
     {
         float attack{attackRole(randInt)};// random attack chance
+        // Checking if attack works
+        // cout << attack << " is attack number in this turn." << endl;
 
         if(turn == 0 && attack < hChance)
         {
