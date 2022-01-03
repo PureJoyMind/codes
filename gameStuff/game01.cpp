@@ -19,6 +19,15 @@ int main(){
     int humanCount{};// Number of initial humans
     int goblinCount{};// Number of initial goblins
 
+    // damage and health
+    float hHealth{250};
+    float hDamage{200};
+    float gHealth{50};
+    float gDamage{40};
+
+    float currentHHealth;
+    float currentGHealth;
+
     int humanKillCount{0};
     int goblinKillCount{0};
 
@@ -27,35 +36,40 @@ int main(){
     cout << "Enter goblin number: ";
     cin >> goblinCount;
 
-    const float hChance{0.3f};// Human attack chance
-    const float gChance{0.1f};// goblin attack chance
+    const float hChance{0.6f};// Human attack chance
+    const float gChance{0.6f};// goblin attack chance
 
     // choosing if its humans turn or goblins by replacing 0 and 1 at 
     // the end of each loop
-    int turn{0};
-    int gSwitch{1};
-    int tmp;
+    char turn{'h'};
 
     while( humanCount > 0 && goblinCount > 0)// while both humans and goblins numbers are above 0
     // (both are still alive)
     {
-        float attack{attackRole(randInt)};// random attack chance
+        float attack = attackRole(randInt);// random attack chance
         // Checking if attack works
         // cout << attack << " is attack number in this turn." << endl;
 
-        if(turn == 0 && attack < hChance)
+        if(turn == 'h' && attack < hChance)
         {
-            goblinCount -= 1;
-            ++goblinKillCount;
+            currentGHealth -= hDamage;
+            if(currentGHealth < 0){
+                --goblinCount;
+                ++goblinKillCount;
+                currentGHealth = gHealth;
+            }
+            turn = 'g';
         } 
-        else if(turn == 1 && attack < gChance)
+        else if(turn == 'g' && attack < gChance)
         {
-            humanCount -= 1;
-            ++humanKillCount;
+            currentHHealth -= gDamage;
+            if(currentHHealth < 0){
+                --humanCount;
+                ++humanKillCount;
+                currentHHealth = hHealth;
+            }
+            turn = 'h';
         }
-        tmp = turn;// tmp = 0
-        turn = gSwitch;// turn = 1
-        gSwitch = tmp;// gswitch = 0
     }
 
     if(humanCount == 0)
