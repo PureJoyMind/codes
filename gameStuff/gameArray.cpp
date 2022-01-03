@@ -7,9 +7,11 @@
 
 using namespace std;
 
+// The shop array
 const size_t shopSize{6};
 array <string, shopSize> itemShop {"boots", "leggings", "armors", "axes", "swords", "potions"};
 
+// Function prototypes
 void printShop();
 void printInventory(array<int, shopSize>);
 bool buyItem(array<int, shopSize>& );
@@ -18,8 +20,8 @@ int main()
 {
     array <int, shopSize> playerInventory{};
 
-    bool game{true};
-    while(game == true)
+    bool game{true};// Game loop continuation condition
+    while(game == true)// The game loop
     {
     printShop();
     printInventory(playerInventory);
@@ -53,22 +55,24 @@ void  printInventory(array <int, shopSize> player)// Printing the players invent
     cout << "*****************************"  << endl;
 }
 
-bool buyItem(array<int, shopSize>& player)
+bool buyItem(array<int, shopSize>& player)// Buying items (note the referenced argument)
 {
     int input;
     cout << "What would you like to buy? <1 - "<< shopSize <<"> (-1 to quit!): ";
     cin >> input;
 
-    if(input == -1 ){
+    if(input == -1 )// Verifying game continuation
+    {
         return false;
     }
 
-    if(input < 0 || input > shopSize){
+    if(input < 0 || input > shopSize)// Verifying input validity
+    {
         cout << "That is not valid!!!\n\n\n"<< endl ;
         return true;
     }
 
-    player[input - 1]++;
+    player[input - 1]++;// Adding the selected item to inventory
     cout << "\n\n\n";
     return true;
 }
