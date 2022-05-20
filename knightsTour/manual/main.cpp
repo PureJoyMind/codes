@@ -19,8 +19,20 @@ void draw();
 array< array<int, 8>, 8 > board {};
 
 int main(){
+    int bX = 0;
+    int bY = 0;
+    
     Knight knight(1, 1);
-    draw();
+    while (true)
+    {
+        bX = knight.current[0];
+        bY = knight.current[1];
+
+        // Adding knights position to the game board
+        ::board[bX][bY] = knight.counter;
+        draw();
+        break;
+    }
     
 }
 

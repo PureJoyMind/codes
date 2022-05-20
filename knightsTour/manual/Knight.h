@@ -5,7 +5,6 @@
 
 class Knight{
     public:
-        int counter = 1;
 
         Knight(int row, int column)
         {
@@ -13,6 +12,11 @@ class Knight{
             current[0] = row;
             current[1] = column;
         }
+
+        int counter = 1; // The counter for knights position
+        // Current location
+        // current{row, column}
+        std::array< int, 2 > current;
 
         void changePos(int m)// getting move number as input and changing position
         {
@@ -33,7 +37,4 @@ class Knight{
               {-2, 1}, {-1, 2}, {1, 2}, {2, 1}
             }
         };
-        // Current location
-        // current{row, column}
-        std::array< int, 2 > current;
 };
