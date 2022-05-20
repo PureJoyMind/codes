@@ -14,6 +14,7 @@ using namespace std;
 
 // Function prototypes
 void draw();
+bool moveCheck(int&);
 
 // Initializing the game board
 array< array<int, 8>, 8 > board {};
@@ -36,6 +37,12 @@ int main(){
     Knight knight(bX, bY);
     while (true)
     {
+        cout << setw(10) << 'E' << "nter the next move:(0-7)";
+        cin >> playerMove;
+        moveCheck(playerMove);
+
+        knight.changePos(playerMove);
+
         bX = knight.current[0];
         bY = knight.current[1];
 
@@ -69,4 +76,12 @@ void draw()// Draw chess board
         cout << setw(12) << '-'<<"---------------------------------"<<endl;
     }
 
+}
+
+bool moveCheck(int& a)// Bounds checking player moves
+{
+    while(a < 0 || a > 7)
+        cout << setw(10) << "\nT" << "hat is a wrong move try again: ";
+        cin >> a;
+    return true;
 }
