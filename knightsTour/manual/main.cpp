@@ -19,7 +19,7 @@ void draw();
 array< array<int, 8>, 8 > board {};
 
 int main(){
-    Knight knight;
+    Knight knight(1, 1);
     draw();
     
 }

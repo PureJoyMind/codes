@@ -7,12 +7,20 @@ class Knight{
     public:
         int counter = 1;
 
+        Knight(int row, int column)
+        {
+            // Getting the initial position of the knight on the board
+            current[0] = row;
+            current[1] = column;
+        }
+
         void changePos(int m)// getting move number as input and changing position
         {
-            if( (current[0] + moves[m][0]) < 8 || (current[0] + moves[m][0]) >= 0 )
+            // Bounds checking
+            if( (current[0] + moves[m][0]) < 8 && (current[0] + moves[m][0]) >= 0 )
                 current[0] += moves[m][0];
             
-            if( (current[1] += moves[m][1]) < 8 || (current[1] += moves[m][1]) >= 0 ) 
+            if( (current[1] += moves[m][1]) < 8 && (current[1] += moves[m][1]) >= 0 ) 
                 current[1] += moves[m][1];
         }
     private:
