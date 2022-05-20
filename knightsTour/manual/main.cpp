@@ -21,8 +21,19 @@ array< array<int, 8>, 8 > board {};
 int main(){
     int bX = 0;
     int bY = 0;
-    
-    Knight knight(1, 1);
+
+    cout << setw(20) << 'w' << "elcome to The Knights Tour\n\n";
+    cout << setw(10) << 'T' << "his is a famous chess problem.\n";
+    cout << setw(10) << 'y' << "ou have to move the knight to every\n";
+    cout << setw(10) << 's' << "quare of the board, touching them all only once.\n\n";
+    cout << setw(10) << "\"K" << "eep in mind that all numbers must be between 0-7\" \n\n";
+
+    cout << setw(10) << 'P' << "lease enter the initial position of the knight:(row, column) ";
+    cin >> bX >> bY;
+
+    int playerMove;// Players move on each turn
+
+    Knight knight(bX, bY);
     while (true)
     {
         bX = knight.current[0];
