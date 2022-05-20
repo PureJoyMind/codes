@@ -7,17 +7,13 @@ class Knight{
     public:
         int counter = 1;
 
-        void getMove()
+        void changePos(int m)// getting move number as input and changing position
         {
-            int m;
-            std::cin >> m;
-            moveNum = m;
-        }
-
-        void changePos()
-        {
-            current[0] += moves[moveNum][0];
-            current[1] += moves[moveNum][1];
+            if( (current[0] + moves[m][0]) < 8 || (current[0] + moves[m][0]) >= 0 )
+                current[0] += moves[m][0];
+            
+            if( (current[1] += moves[m][1]) < 8 || (current[1] += moves[m][1]) >= 0 ) 
+                current[1] += moves[m][1];
         }
     private:
     // https://stackoverflow.com/questions/11734861/when-can-outer-braces-be-omitted-in-an-initializer-list
@@ -32,6 +28,4 @@ class Knight{
         // Current location
         // current{row, column}
         std::array< int, 2 > current;
-        // The move number between 0-7
-        int moveNum;
 };

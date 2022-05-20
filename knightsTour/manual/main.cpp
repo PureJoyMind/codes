@@ -40,7 +40,7 @@ void draw()// Draw chess board
         cout << setw(10) << j;// Row numbers
         for(int k{0}; k < 8; k++)// Each row
         {
-            cout << " |  ";
+            cout << " | " << ::board[j][k];
         }
         cout << " |" << endl;
         cout << setw(12) << '-'<<"---------------------------------"<<endl;
