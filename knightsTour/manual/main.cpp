@@ -39,10 +39,16 @@ int main(){
     ::board[bX][bY] = knight.counter;
     
     draw();
+    knight.counter++;
     while (true)
     {
+        cout << setw(10) << "\"E" << "nter -1 to exit the game\"\n\n ";
         cout << setw(10) << 'E' << "nter the next move(0-7): ";
         cin >> playerMove;
+
+        if(playerMove == -1)
+            break;
+
         while(playerMove < 0 || playerMove > 7)
         {
             cout << setw(10) << "\nO" << "ut of bounds! Try again(0-7): ";
@@ -54,9 +60,16 @@ int main(){
         knight.assignCurrent(bX, bY);
 
         // Adding knights position to the game board
-        ::board[bX][bY] = knight.counter;
-        draw();
-        break;
+        // Checking if that spot is empty
+        if(::board[bX][bY] == 0)
+        {
+            ::board[bX][bY] = knight.counter;
+            draw();
+            knight.counter++;
+        }
+        else{
+            cout << setw(10) << "\nO" << "ops! That spot is already full!\n";
+        }
     }
     
 }

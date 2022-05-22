@@ -17,16 +17,29 @@ class Knight{
         // Current location
         // current{row, column}
 
-        void changePos(int m)// getting move number as input and changing position
+        void changePos(int& m)// getting move number as input and changing position
         {
-            // Bounds checking
-            current[0] += moves[m][0];
-            if( (current[0] + moves[m][0]) < 8 && (current[0] + moves[m][0]) >= 0 )
+            // Bounds checking both horizontal and vertical move before applying them to the variables
+            while( (current[0] + moves[m][0]) >= 8 || (current[0] + moves[m][0]) < 0 )
             {
-                
+                std::cout << std::setw(10) << "\nU" << "navailable move! Try again: ";
+                std::cin >> m;
+                /* 
+                I tried using a recursive algorithm. I realize it wasn't needed
+                in the first place. An interesting bug arose though. I figured it out.
+                Recursive is not needed anyways...
+                */
+                //changePos(m);
             }
-            //if( (current[1] += moves[m][1]) < 8 && (current[1] += moves[m][1]) >= 0 ) 
-                current[1] += moves[m][1];
+            while( (current[1] + moves[m][1]) >= 8 || (current[1] + moves[m][1]) < 0 )
+            {
+                std::cout << std::setw(10) << "\nU" << "navailable move! Try again: ";
+                std::cin >> m;
+                //changePos(m);
+            }
+            
+            current[0] += moves[m][0];
+            current[1] += moves[m][1];
         }
 
         void assignCurrent(int& a, int& b)
