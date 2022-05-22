@@ -40,6 +40,14 @@ int main(){
     
     draw();
     knight.counter++;
+    
+    // Temporary variable: 
+    // For when a square is full I can use this to revert
+    // back to the previous move
+    int tmpX{bX}, tmpY{bY};
+
+    int revertPlayerMove = 0;
+
     while (true)
     {
         cout << setw(10) << "\"E" << "nter -1 to exit the game\"\n\n ";
@@ -57,8 +65,11 @@ int main(){
 
         knight.changePos(playerMove);
 
-        knight.assignCurrent(bX, bY);
+        // tmp var for the last position on board
+        tmpX = bX;
+        tmpY = bY;
 
+        knight.assignCurrent(bX, bY);
         // Adding knights position to the game board
         // Checking if that spot is empty
         if(::board[bX][bY] == 0)
@@ -69,6 +80,49 @@ int main(){
         }
         else{
             cout << setw(10) << "\nO" << "ops! That spot is already full!\n";
+            // Reverting bX, bY back to last position 
+            bX = tmpX;
+            bY = tmpY;
+
+            // Reverting the current position in Knight object
+            // back to last position
+            /*
+            In order to reverse a knight move, we must use
+            the move number used and add 4 to it. if it exeeds 7 then
+            we must start from 0 and add 4 then.
+            I used a switch case to do this.
+            */
+            switch (playerMove)
+            {
+            case 0:
+                revertPlayerMove = 4;
+                break;
+            case 1:
+                revertPlayerMove = 5;
+                break;
+            case 2:
+                revertPlayerMove = 6;
+                break;
+            case 3:
+                revertPlayerMove = 7;
+                break;
+            case 4:
+                revertPlayerMove = 0;
+                break;
+            case 5:
+                revertPlayerMove = 1;
+                break;
+            case 6:
+                revertPlayerMove = 2;
+                break;
+            case 7:
+                revertPlayerMove = 3;
+                break;
+            default:
+                break;
+            }
+            knight.changePos(revertPlayerMove);
+
         }
     }
     
