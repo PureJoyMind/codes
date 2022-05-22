@@ -35,16 +35,23 @@ int main(){
     int playerMove;// Players move on each turn
 
     Knight knight(bX, bY);
+
+    ::board[bX][bY] = knight.counter;
+    
+    draw();
     while (true)
     {
-        cout << setw(10) << 'E' << "nter the next move:(0-7)";
+        cout << setw(10) << 'E' << "nter the next move(0-7): ";
         cin >> playerMove;
-        moveCheck(playerMove);
+        while(playerMove < 0 || playerMove > 7)
+        {
+            cout << setw(10) << "\nO" << "ut of bounds! Try again(0-7): ";
+            cin >> playerMove;
+        }
 
         knight.changePos(playerMove);
 
-        bX = knight.current[0];
-        bY = knight.current[1];
+        knight.assignCurrent(bX, bY);
 
         // Adding knights position to the game board
         ::board[bX][bY] = knight.counter;
